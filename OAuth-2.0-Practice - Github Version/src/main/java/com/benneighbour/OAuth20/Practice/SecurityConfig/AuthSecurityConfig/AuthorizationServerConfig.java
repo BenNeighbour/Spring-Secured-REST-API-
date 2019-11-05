@@ -27,13 +27,33 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory().withClient("my-trusted-client")
+        clients.inMemory().withClient("superuser")
                 .authorizedGrantTypes("client_credentials", "password", "refresh_token")
                 .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
                 .scopes("read", "write", "trust")
                 .resourceIds("oauth2-resource")
-                .accessTokenValiditySeconds(500)
-                .secret(passwordEncoder.encode("secret"));
+                .accessTokenValiditySeconds(5000)
+                .secret(passwordEncoder.encode("secret"))
+
+                .and()
+
+                .withClient("website")
+                .authorizedGrantTypes("client_credentials", "password", "refresh_token")
+                .authorities("ROLE_CLIENT")
+                .scopes("read", "write")
+                .resourceIds("oauth2-resource")
+                .accessTokenValiditySeconds(5000)
+                .secret(passwordEncoder.encode("secret"))
+
+                .and()
+
+                .withClient("3rd party developer")
+                .authorizedGrantTypes("client_credentials", "password", "refresh_token")
+                .authorities("ROLE_CLIENT")
+                .scopes("read", "write")
+                .resourceIds("oauth2-resource")
+                .accessTokenValiditySeconds(5000)
+                .secret(passwordEncoder.encode("3rdparty"));
 
     }
 
