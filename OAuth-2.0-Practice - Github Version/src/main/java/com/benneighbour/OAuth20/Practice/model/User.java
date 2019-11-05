@@ -1,5 +1,6 @@
 package com.benneighbour.OAuth20.Practice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ public class User {
 
     @Column(name = "username")
     private String username;
-
+    @JsonIgnore
     @Column(name = "password")
     private String password;
 
