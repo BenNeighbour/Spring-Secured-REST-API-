@@ -1,6 +1,6 @@
 package com.benneighbour.OAuth20.Practice.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.List;
