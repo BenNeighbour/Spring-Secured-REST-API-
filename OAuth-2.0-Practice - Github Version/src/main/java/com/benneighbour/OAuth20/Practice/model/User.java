@@ -1,7 +1,6 @@
 package com.benneighbour.OAuth20.Practice.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,7 +17,8 @@ public class User {
 
     @Column(name = "username")
     private String username;
-    @JsonIgnore
+    
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "password")
     private String password;
 
@@ -33,7 +33,7 @@ public class User {
         this.roles = roles;
     }
 
-
+   
     public Long getUid() {
         return uid;
     }
@@ -41,7 +41,7 @@ public class User {
         this.uid = uid;
     }
 
-
+    
     public String getUsername() {
         return username;
     }
